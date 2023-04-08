@@ -43,14 +43,12 @@ def countdown(timer_length, title):
 
 # Streamlit app code
 st.title("Pomodoro Timer")
-audio_url = st.text_input("Enter MP4 file URL for background music:")
-if audio_url:
-    html = f"""
-        <audio autoplay loop controls>
-            <source src="{audio_url}" type="audio/mp4">
-        </audio>
-    """
-    st.write(HTML(html))
+
+music_file = st.file_uploader("Upload Music File (mp3 format)", type=["mp3"])
+
+if music_file is not None:
+    st.audio(music_file, format="audio/mp3", start_time=0)
+
 st.markdown(
          f"""
          <style>
