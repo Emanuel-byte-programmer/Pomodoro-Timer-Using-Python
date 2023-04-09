@@ -15,16 +15,16 @@ def pomodoro_timer(pomodoro_length, short_break_length, long_break_length, long_
         while running:
             # Pomodoro session
             st.write(f"Pomodoro Session #{pomodoro_count + 1}")
-            timer_length = countdown(pomodoro_length, "Pomodoro Duration :- ")
+            timer_length = countdown(pomodoro_length, "Time Remaining -")
 
             # Increment pomodoro count and check if long break is needed
             pomodoro_count += 1
             if pomodoro_count % long_break_interval == 0:
                 st.write("Time for a long break!")
-                timer_length = countdown(long_break_length, "Long Break Duration :- ")
+                timer_length = countdown(long_break_length, "Long Break Duration - ")
             else:
                 st.write("Time for a short break!")
-                timer_length = countdown(short_break_length, "Short Break Duration :- ")
+                timer_length = countdown(short_break_length, "Short Break Duration - ")
 
             # Check if reset button is clicked
             if reset_button:
@@ -36,7 +36,7 @@ def countdown(timer_length, title):
     while timer_length:
         mins, secs = divmod(timer_length, 60)
         timeformat = '{:02d}:{:02d}'.format(mins, secs)
-        timer_text.write(f"{title}{timeformat}") # update the text field with the current time and title
+        timer_text.write(f"<h1>{title}{timeformat}</h1>",unsafe_allow_html=True) # update the text field with the current time and title
         time.sleep(1)
         timer_length -= 1
     st.balloons()
